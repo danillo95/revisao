@@ -1,30 +1,50 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import *
 
-def enviar_mensagem():
-    nome = entry_nome.get()
-    mensagem = entry_mensagem.get() 
-    if nome and mensagem:
-        nova_janela = tk.Toplevel(root)
-        nova_janela.title("Mensagem Enviada")
-        label_nome = tk.Label(nova_janela, text=f"Nome: {nome}")
-        label_nome.pack()
-        label_mensagem = tk.Label(nova_janela, text=f"Mensagem: {mensagem}")
-        label_mensagem.pack()
+# Definindo a função que será executada para enviar a mensagem 
+def continuação_enviar():
+    nome = entrada_nome.get()
+    mensagem = entrada_mensagem.get()
+
+    # Definindo comdição para exibição da janela com a mensagem 
+    if nome and mensagem :
+      mensagem_janela = tk.Toplevel(janela_main)
+      mensagem_janela.title("mensagem enviada")
+
+      # Criar um texto para aparecer na tela 
+      mensagem_label = tk.Label(mensagem_janela, text=f"{nome} diz: {mensagem}")
+
+      mensagem_label.pack()
+
     else:
-        messagebox.showerror("Erro", "Por favor, preencha todos os campos!")
+        caixa_mensagem.showerror("Erro","favor inserir um nome e uma mensagem")
 
-root = tk.Tk()
-root.title("Envio de Mensagem")  
+# Definindo janela       S
+corazul= "#167CA8"
+janela_main = tk.Tk()
+janela_main.title("mensagem")
+janela_main.geometry("250x150")
+janela_main.config(bg=corazul)
 
-label_nome = tk.Label(root, text="Nome:")
-label_nome.pack()
-entry_nome = tk.Entry(root)
-entry_nome.pack()
+# Configurando informações de entrada do nome
+info_nome = tk.Label(janela_main, text="Nome") 
+info_nome.pack()
+entrada_nome = tk.Entry(janela_main)
+entrada_nome.pack()
 
+# Configurando informaçlões de entrada da mensagem
+info_mensagem = tk.Label(janela_main, text="Mensagem")
+info_mensagem.pack()
+entrada_mensagem = tk.Entry(janela_main)
+entrada_mensagem.pack()
 
-botao_enviar = tk.Button(root, text="Enviar", command=enviar_mensagem)
-botao_enviar.pack()
+# Configurando informações e função do botão 
+botao = tk.Button(janela_main, text='Enviar', command=continuação_enviar)
+botao.pack()
+aula = "!!! "
+# Configurando mensagem para aguardar o usuário inserir os dados 
+mensagem_esperando = tk.Label (janela_main, text=f"Esperando a mensagem do usuario{aula}")
+mensagem_esperando.pack()
 
-root.mainloop()
-# Ryan alves de oliveira lopes tentei bunquei infomações na internet 
+janela_main.mainloop()
